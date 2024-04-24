@@ -78,9 +78,9 @@ const FiltersGroup = props => {
         ))}
       </div>
       <div className="select-label-container">
-        <label htmlFor="category" className="select-category-label">
+        <h1 className="select-category-label">
           Rating
-        </label>
+        </h1>
         {ratingsList.map(rat => (
           <SelectRatings
             key={rat.ratingId}
