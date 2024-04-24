@@ -130,6 +130,28 @@ class AllProductsSection extends Component {
     this.setState({titleSearch: search}, this.getProducts)
   }
 
+  changeCategorySearch = id => {
+    this.setState({category: id}, this.getProducts)
+  }
+
+  changeRating = id => {
+    this.setState({rating: id}, this.getProducts)
+  }
+
+  clearAllFilters = () => {
+    this.setState(
+      {
+        productsList: [],
+        apiResponse: apiStatusConstants.loading,
+        activeOptionId: sortbyOptions[0].optionId,
+        titleSearch: '',
+        category: '',
+        rating: '',
+      },
+      this.getProducts,
+    )
+  }
+
   renderProductsList = () => {
     const {productsList, activeOptionId} = this.state
     let productsView
@@ -203,14 +225,19 @@ class AllProductsSection extends Component {
   }
 
   render() {
-    const {titleSearch} = this.state
-
+    const {titleSearch, rating} = this.state
+    console.log(rating)
     return (
       <div className="all-products-section">
         {/* TODO: Update the below element */}
         <FiltersGroup
           changeTitleSearch={this.changeTitleSearch}
           title={titleSearch}
+          categoryOptions={categoryOptions}
+          changeCategorySearch={this.changeCategorySearch}
+          ratingsList={ratingsList}
+          changeRating={this.changeRating}
+          clearAllFilters={this.clearAllFilters}
         />
 
         {this.renderView()}
